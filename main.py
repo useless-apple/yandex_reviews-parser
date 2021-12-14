@@ -4,6 +4,8 @@ import cfscrape
 import requests
 from bs4 import BeautifulSoup
 
+yandex_id = '167689226141'
+
 
 def get_count_star(review_stars):
     star_count = 0
@@ -15,9 +17,6 @@ def get_count_star(review_stars):
         else:
             star_count = star_count + 1
     return star_count
-
-
-yandex_id = '167689226141'
 
 
 def get_session():
