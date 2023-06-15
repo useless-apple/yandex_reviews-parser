@@ -30,3 +30,9 @@
 pip install -R requirements.txt
 ```
 
+Далее запусить main.py
+```shell
+python main.py
+```
+Вводим ID компании которую нужно спарсить.<br>
+И получаем результат
