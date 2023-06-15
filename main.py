@@ -4,7 +4,7 @@ import cfscrape
 import requests
 from bs4 import BeautifulSoup
 
-yandex_id = '167689226141'
+yandex_id = '6540452758'
 
 
 def get_count_star(review_stars):
@@ -69,10 +69,11 @@ def parsing_data(data_result, r):
     if reviews_list:
         review_id = 0
         for review in reviews_list:
-            try:
-                review_name = review.find('div', {"itemprop": "author"}).find('span', {"itemprop": "name"}).text
-            except:
-                review_name = None
+            k = 1
+            # try:
+            review_name = review.find('div', {"itemprop": "author"}).find('span', {"itemprop": "name"}).text
+            # except:
+            #     review_name = None
             try:
                 review_date = review.find('meta', {"itemprop": "datePublished"}).get('content')
             except:
