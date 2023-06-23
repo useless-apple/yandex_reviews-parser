@@ -1,3 +1,7 @@
 /.idea/
 /venv/
 /company_reviews.json
+/result.json
+/result_all.json
+/result_reviews.json
+/result_comp.json
