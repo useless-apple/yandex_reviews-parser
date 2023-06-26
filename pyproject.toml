@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "yandex_reviews-parser"
+version = "0.1.1"
+description = "Python yandex company reviews parser"
+authors = ["Daniil <danil16m@mail.ru>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["python", "yandex", "parser", "reviews"]
+
+packages = [
+    { include = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+undetected-chromedriver = "^3.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
