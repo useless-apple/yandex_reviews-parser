@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yandex_reviews-parser"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python yandex company reviews parser"
 authors = ["Daniil <danil16m@mail.ru>"]
 license = "MIT"
@@ -15,6 +15,10 @@ packages = [
 python = "^3.9"
 undetected-chromedriver = "^3.5.0"
 
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
+requests-mock = "^1.11.0"
 
 [build-system]
 requires = ["poetry-core"]

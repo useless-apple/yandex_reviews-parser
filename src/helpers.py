@@ -4,12 +4,19 @@ import re
 
 class ParserHelper:
     @staticmethod
-    def list_to_num(l:list)->int:
-        return int([x for x in re.findall(r'-?\d+\.?\d*', l)][0])
+    def list_to_num(l: list) -> int:
+        if len(l) <= 0:
+            raise IndexError("Empty list")
+        numbers = [x for x in re.findall(r'-?\d+\.?\d*',''.join(l))]
+        if not numbers:
+            raise ValueError("No numbers")
+        return int(float(numbers[0]))
 
     @staticmethod
-    def format_rating(data:list)-> float:
-        return float(''.join(x.text for x in data).replace(',', '.'))
+    def format_rating(l: list) -> float:
+        if len(l) <= 0:
+            return 0
+        return float(''.join(x.text for x in l).replace(',', '.'))
 
     @staticmethod
     def write_json_txt(result, file):
