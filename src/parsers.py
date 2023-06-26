@@ -1,7 +1,5 @@
 import time
 from dataclasses import asdict
-from datetime import datetime
-from typing import Union
 
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -13,33 +11,6 @@ from storage import Review, Info
 class Parser:
     def __init__(self, driver):
         self.driver = driver
-
-    @staticmethod
-    def form_date(date_string: str) -> float:
-        """
-        Приводим дату в формат Timestamp
-        :param date_string: Дата в формате %Y-%m-%dT%H:%M:%S.%fZ
-        :return: Дата в формате Timestamp
-        """
-        datetime_object = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S.%fZ")
-        return datetime_object.timestamp()
-
-    @staticmethod
-    def get_count_star(review_stars: list) -> Union[float, int]:
-        """
-        Считаем рейтинг по звездам
-        :param review_stars: Массив элементов звезд рейтинга
-        :return: Рейтинг
-        """
-        star_count = 0
-        for review_star in review_stars:
-            if '_empty' in review_star.get_attribute('class'):
-                continue
-            if '_half' in review_star.get_attribute('class'):
-                star_count = star_count + 0.5
-                continue
-            star_count = star_count + 1
-        return star_count
 
     def __scroll_to_bottom(self, elem, driver) -> None:
         """
@@ -93,14 +64,14 @@ class Parser:
             text = None
         try:
             stars = elem.find_elements(By.XPATH, ".//div[@class='business-rating-badge-view__stars']/span")
-            stars = self.get_count_star(stars)
+            stars = ParserHelper.get_count_star(stars)
         except NoSuchElementException:
             stars = 0
 
         item = Review(
             name=name,
             icon_href=icon_href,
-            date=self.form_date(date),
+            date=ParserHelper.form_date(date),
             text=text,
             stars=stars
         )
@@ -132,12 +103,11 @@ class Parser:
             count_rating_list = rating_block.find_element(By.XPATH, xpath_count_rating).text
             count_rating = ParserHelper.list_to_num(count_rating_list)
             xpath_stars = ".//div[@class='business-rating-badge-view__stars']/span"
-            stars = self.get_count_star(rating_block.find_elements(By.XPATH, xpath_stars))
+            stars = ParserHelper.get_count_star(rating_block.find_elements(By.XPATH, xpath_stars))
         except NoSuchElementException:
             rating = 0
             count_rating = 0
             stars = 0
-
 
         item = Info(
             name=name,

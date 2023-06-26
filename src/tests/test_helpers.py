@@ -4,25 +4,25 @@ from src.helpers import ParserHelper
 
 
 def test_format_rating():
-    data = [RatingElement("4")]
+    data = ["4"]
     assert ParserHelper.format_rating(data) == 4.0
 
-    data = [RatingElement("3"), RatingElement("5")]
+    data = ["3", "5"]
     assert ParserHelper.format_rating(data) == 35.0
 
-    data = [RatingElement("1"), RatingElement("0"), RatingElement("0")]
+    data = ["1", "0", "0"]
     assert ParserHelper.format_rating(data) == 100.0
 
-    data = [RatingElement("2"), RatingElement(","), RatingElement("5")]
+    data = ["2", ",", "5"]
     assert ParserHelper.format_rating(data) == 2.5
 
-    data = [RatingElement("9"), RatingElement("9"), RatingElement("9"), RatingElement("9")]
+    data = ["9", "9", "9", "9"]
     assert ParserHelper.format_rating(data) == 9999.0
 
     data = []
     assert ParserHelper.format_rating(data) == 0.0
 
-    data = [RatingElement("0")]
+    data = ["0"]
     assert ParserHelper.format_rating(data) == 0.0
 
 
@@ -54,6 +54,13 @@ def test_list_to_num():
         ParserHelper.list_to_num(l)
 
 
-class RatingElement:
-    def __init__(self, text):
-        self.text = text
+def test_form_date():
+    date = "2022-01-01T00:00:00.000Z"
+    assert ParserHelper.form_date(date) == 1640977200.0
+
+    date = "2023-06-26T12:34:56.789Z"
+    assert ParserHelper.form_date(date) == 1687764896.789
+
+    date = "2021-09-15T23:59:59.999Z"
+    assert ParserHelper.form_date(date) == 1631732399.999
+

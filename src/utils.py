@@ -12,7 +12,7 @@ class YandexParser:
         self.id_yandex = id_yandex
 
     def __open_page(self):
-        url = 'https://yandex.ru/maps/org/{}/reviews/'.format(str(self.id_yandex))
+        url: str = 'https://yandex.ru/maps/org/{}/reviews/'.format(str(self.id_yandex))
         opts = undetected_chromedriver.ChromeOptions()
         opts.add_argument('headless')
         opts.add_argument('--disable-gpu')
@@ -30,7 +30,7 @@ class YandexParser:
             reviews - получает данные по отчетам
         @return: Данные по запрошенному типу
         """
-        result = {}
+        result:dict = {}
         page = self.__open_page()
         time.sleep(4)
         try:
