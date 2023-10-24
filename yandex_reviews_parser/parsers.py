@@ -4,8 +4,8 @@ from dataclasses import asdict
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
-from src.helpers import ParserHelper
-from src.storage import Review, Info
+from yandex_reviews_parser.helpers import ParserHelper
+from yandex_reviews_parser.storage import Review, Info
 
 
 class Parser:

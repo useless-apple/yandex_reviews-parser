@@ -1,14 +1,15 @@
 [tool.poetry]
-name = "yandex_reviews-parser"
-version = "0.1.3"
+name = "yandex-reviews-parser"
+version = "0.1.4"
 description = "Python yandex company reviews parser"
 authors = ["Daniil <danil16m@mail.ru>"]
 license = "MIT"
 readme = "README.md"
+homepage = 'https://github.com/useless-apple/yandex_reviews-parser'
 keywords = ["python", "yandex", "parser", "reviews"]
 
 packages = [
-    { include = "src" }
+    { include = "yandex_reviews_parser"}
 ]
 
 [tool.poetry.dependencies]

@@ -1,7 +1,7 @@
 import time
 
 import undetected_chromedriver
-from src.parsers import Parser
+from yandex_reviews_parser.parsers import Parser
 
 
 class YandexParser:

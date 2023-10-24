@@ -40,7 +40,7 @@ pip install yandex-reviews-parser
 ```
 
 ```python
-from src.utils import YandexParser
+from yandex_reviews_parser.utils import YandexParser
 id_ya = 1234 #ID Компании Yandex
 parser = YandexParser(id_ya)
 
