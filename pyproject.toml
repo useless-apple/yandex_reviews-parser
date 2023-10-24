@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yandex_reviews-parser"
-version = "0.1.2"
+version = "0.1.3"
 description = "Python yandex company reviews parser"
 authors = ["Daniil <danil16m@mail.ru>"]
 license = "MIT"

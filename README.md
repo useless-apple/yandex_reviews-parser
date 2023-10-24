@@ -18,14 +18,16 @@
       "icon_href": "https://avatars.mds.yandex.net/get-yapic/51381/cs8Tx0sigtfayYhRQBDJkavzJU-1/islands-68",
       "date": 1681992580.04,
       "text": "Выражаю огромную благодарность работникам ",
-      "stars": 5
+      "stars": 5,
+      "answer": "Владимир, Благодарим Вас, что уделили время и оставили приятный отзыв о нашем автосервисе! Мы для Вас приготовили подарок в следующий визит."
     },
     {
       "name": "Иван Иванов",
       "icon_href": "https://avatars.mds.yandex.net/get-yapic/51381/cs8Tx0sigtfayYhRQBDJkavzJU-1/islands-68",
       "date": 1681992580.04,
       "text": "Выражаю огромную благодарность работникам ",
-      "stars": 5
+      "stars": 5,
+      "answer": null
     }
   ]
 }
@@ -38,6 +40,7 @@ pip install yandex-reviews-parser
 ```
 
 ```python
+from src.utils import YandexParser
 id_ya = 1234 #ID Компании Yandex
 parser = YandexParser(id_ya)
 

@@ -1,7 +1,7 @@
 import time
 
 import undetected_chromedriver
-from parsers import Parser
+from src.parsers import Parser
 
 
 class YandexParser:

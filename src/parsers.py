@@ -4,30 +4,30 @@ from dataclasses import asdict
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
-from helpers import ParserHelper
-from storage import Review, Info
+from src.helpers import ParserHelper
+from src.storage import Review, Info
 
 
 class Parser:
     def __init__(self, driver):
         self.driver = driver
 
-    def __scroll_to_bottom(self, elem, driver) -> None:
+    def __scroll_to_bottom(self, elem) -> None:
         """
         Скроллим список до последнего отзыва
         :param elem: Последний отзыв в списке
         :param driver: Драйвер undetected_chromedriver
         :return: None
         """
-        driver.execute_script(
+        self.driver.execute_script(
             "arguments[0].scrollIntoView();",
             elem
         )
         time.sleep(1)
-        new_elem = driver.find_elements(By.CLASS_NAME, "business-reviews-card-view__review")[-1]
+        new_elem = self.driver.find_elements(By.CLASS_NAME, "business-reviews-card-view__review")[-1]
         if elem == new_elem:
             return
-        self.__scroll_to_bottom(new_elem, driver)
+        self.__scroll_to_bottom(new_elem)
 
     def __get_data_item(self, elem):
         """
@@ -68,12 +68,22 @@ class Parser:
         except NoSuchElementException:
             stars = 0
 
+        try:
+            answer = elem.find_element(By.CLASS_NAME, "business-review-view__comment-expand")
+            if answer:
+                self.driver.execute_script("arguments[0].click()", answer)
+                answer = elem.find_element(By.CLASS_NAME, "business-review-comment-content__bubble").text
+            else:
+                answer = None
+        except NoSuchElementException:
+            answer = None
         item = Review(
             name=name,
             icon_href=icon_href,
             date=ParserHelper.form_date(date),
             text=text,
-            stars=stars
+            stars=stars,
+            answer=answer
         )
         return asdict(item)
 
@@ -121,7 +131,7 @@ class Parser:
         reviews = []
         elements = self.driver.find_elements(By.CLASS_NAME, "business-reviews-card-view__review")
         if len(elements) > 1:
-            self.__scroll_to_bottom(elements[-1], self.driver)
+            self.__scroll_to_bottom(elements[-1])
             elements = self.driver.find_elements(By.CLASS_NAME, "business-reviews-card-view__review")
             for elem in elements:
                 reviews.append(self.__get_data_item(elem))

@@ -9,6 +9,7 @@ class Review:
     date: float
     text: str
     stars: float
+    answer: str
 
 
 @dataclass
