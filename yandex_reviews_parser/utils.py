@@ -14,6 +14,8 @@ class YandexParser:
     def __open_page(self):
         url: str = 'https://yandex.ru/maps/org/{}/reviews/'.format(str(self.id_yandex))
         opts = undetected_chromedriver.ChromeOptions()
+        opts.add_argument('--no-sandbox')
+        opts.add_argument('--disable-dev-shm-usage')
         opts.add_argument('headless')
         opts.add_argument('--disable-gpu')
         driver = undetected_chromedriver.Chrome(options=opts)
