@@ -63,7 +63,7 @@ class Parser:
         except NoSuchElementException:
             text = None
         try:
-            stars = elem.find_elements(By.XPATH, ".//div[@class='business-rating-badge-view__stars']/span")
+            stars = elem.find_elements(By.XPATH, ".//div[@class='business-rating-badge-view__stars _spacing_normal']/span")
             stars = ParserHelper.get_count_star(stars)
         except NoSuchElementException:
             stars = 0
@@ -112,7 +112,7 @@ class Parser:
             xpath_count_rating = ".//div[@class='business-summary-rating-badge-view__rating-count']/span[@class='business-rating-amount-view _summary']"
             count_rating_list = rating_block.find_element(By.XPATH, xpath_count_rating).text
             count_rating = ParserHelper.list_to_num(count_rating_list)
-            xpath_stars = ".//div[@class='business-rating-badge-view__stars']/span"
+            xpath_stars = ".//div[@class='business-rating-badge-view__stars _spacing_normal']/span"
             stars = ParserHelper.get_count_star(rating_block.find_elements(By.XPATH, xpath_stars))
         except NoSuchElementException:
             rating = 0
