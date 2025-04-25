@@ -63,7 +63,7 @@ class Parser:
         except NoSuchElementException:
             text = None
         try:
-            stars = elem.find_elements(By.XPATH, ".//div[@class='business-rating-badge-view__stars _spacing_normal']/span")
+            stars = elem.find_elements(By.XPATH, ".//span[contains(@class, 'business-rating-badge-view__star')]")
             stars = ParserHelper.get_count_star(stars)
         except NoSuchElementException:
             stars = 0
