@@ -59,7 +59,7 @@ class Parser:
             date = None
 
         try:
-            text = elem.find_element(By.XPATH, ".//span[@class='business-review-view__body-text']").text
+            text = elem.find_element(By.XPATH, ".//span[@class=' spoiler-view__text-container']").text
         except NoSuchElementException:
             text = None
         try:
