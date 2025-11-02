@@ -5,11 +5,13 @@ from yandex_reviews_parser.parsers import Parser
 
 
 class YandexParser:
-    def __init__(self, id_yandex: int):
+    def __init__(self, id_yandex: int, driver_executable_path: str = None, browser_executable_path: str = None):
         """
         @param id_yandex: ID Яндекс компании
         """
         self.id_yandex = id_yandex
+        self.driver_executable_path = driver_executable_path
+        self.browser_executable_path = browser_executable_path
 
     def __open_page(self):
         url: str = 'https://yandex.ru/maps/org/{}/reviews/'.format(str(self.id_yandex))
@@ -18,7 +20,7 @@ class YandexParser:
         opts.add_argument('--disable-dev-shm-usage')
         opts.add_argument('headless')
         opts.add_argument('--disable-gpu')
-        driver = undetected_chromedriver.Chrome(options=opts)
+        driver = undetected_chromedriver.Chrome(options=opts,driver_executable_path = self.driver_executable_path, browser_executable_path = self.browser_executable_path)
         parser = Parser(driver)
         driver.get(url)
         return parser

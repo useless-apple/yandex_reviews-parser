@@ -58,12 +58,12 @@ class ParserHelper:
         :param review_stars: Массив элементов звезд рейтинга
         :return: Рейтинг
         """
-        star_count: float = 0
+        star_count: int = 0
         for review_star in review_stars:
             if '_empty' in review_star.get_attribute('class'):
                 continue
-            if '_half' in review_star.get_attribute('class'):
-                star_count = star_count + 0.5
+            if '_full' in review_star.get_attribute('class'):
+                star_count += 1
                 continue
-            star_count = star_count + 1
+
         return star_count
